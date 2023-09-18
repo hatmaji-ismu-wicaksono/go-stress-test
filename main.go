@@ -35,7 +35,7 @@ func main() {
 			targetURL := baseURL + urlData[u]
 			results := make(chan int, numRequests)
 			for c := 0; c < concurrency; c++ {
-				// fmt.Println("Batch Request: ", n, "; Virtual User: ", c, "; Target URL: ", targetURL, "; Token:", tokenData[c])
+				// fmt.Println("\n", "Batch Request: ", n, "; Virtual User: ", c, "; Target URL: ", targetURL, "; Token:", tokenData[c])
 				wg.Add(1)
 				go sendRequestNew(targetURL, tokenData[c], &wg, results)
 			}
@@ -57,6 +57,7 @@ func main() {
 			averageResponseTime := float64(totalTime) / float64(successfulRequests)
 			fmt.Printf("\n")
 			fmt.Printf("\n==========> Batch Request: %d\n", n+1)
+			fmt.Printf("Endpoint: %v\n", targetURL)
 			fmt.Printf("Total Batch Requests: %d\n", numRequests)
 			fmt.Printf("Total Requests: %d\n", concurrency)
 			fmt.Printf("Successful Requests: %d\n", successfulRequests)
