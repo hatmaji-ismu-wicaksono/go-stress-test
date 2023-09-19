@@ -6,11 +6,12 @@ import (
 
 type (
 	config struct {
-		BaseURL   string `mapstructure:"BASE_URL"`
-		NumRequests int    `mapstructure:"NUM_REQUESTS"`
-		Concurrency int    `mapstructure:"CONCURRENCY"`
-		TokenListFile string `mapstructure:"TOKEN_LIST_FILE"`
-		UrlListFile string `mapstructure:"URL_LIST_FILE"`
+		BaseURL        string `mapstructure:"BASE_URL"`
+		NumRequests    int    `mapstructure:"NUM_REQUESTS"`
+		Concurrency    int    `mapstructure:"CONCURRENCY"`
+		TokenListFile  string `mapstructure:"TOKEN_LIST_FILE"`
+		UrlListFile    string `mapstructure:"URL_LIST_FILE"`
+		RequestTimeout int    `mapstructure:"REQUEST_TIMEOUT"`
 	}
 )
 
@@ -24,7 +25,6 @@ func init() {
 	viper.SetConfigType("env")
 	viper.AddConfigPath(".")
 	viper.AddConfigPath("..")
-	
 
 	// === Read the config file
 	err := viper.ReadInConfig()
